@@ -4,12 +4,12 @@
   --background: #f2f2f3;
   --foreground: #343537;
   --accent: #00d4ff;
+  --blink: 3.6s;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@theme inline {
+  --font-pixel: var(--font-silkscreen);
+  --font-marker: var(--font-permanent-marker);
 }
 
 html {
@@ -27,5 +27,130 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* Fondo claro con textura sutil de papel y luz cian */
+.paper {
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgba(0, 212, 255, 0.10), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    var(--background);
+}
+
+/* ---------- Semáforo ---------- */
+
+@keyframes blink {
+  0%, 100% { opacity: 0.06; }
+  40%, 62% { opacity: 1; }
+}
+
+@keyframes halo {
+  0%, 100% { opacity: 0.1; transform: scale(0.9); }
+  40%, 62% { opacity: 1; transform: scale(1); }
+}
+
+.lamp {
+  animation: blink var(--blink) ease-in-out infinite;
+}
+
+.halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: halo var(--blink) ease-in-out infinite;
+}
+
+@keyframes dot {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+.blink-dot {
+  box-shadow: 0 0 8px var(--accent);
+  animation: dot 1.8s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-0.7deg); }
+  50% { transform: rotate(0.7deg); }
+}
+
+.sway {
+  transform-box: view-box;
+  transform-origin: 800px 104px;
+  animation: sway 7s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-40px); }
+}
+
+.drift {
+  animation: drift 30s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.25; }
+}
+
+.twinkle {
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* ---------- Entradas ---------- */
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.reveal {
+  animation: reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Cinta de "en construcción" */
+.tape {
+  background: var(--accent);
+  box-shadow: 0 8px 0 rgba(17, 17, 17, 0.12);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+.nudge {
+  animation: nudge 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway,
+  .drift,
+  .twinkle,
+  .reveal,
+  .marquee,
+  .nudge {
+    animation: none;
+  }
+  .lamp,
+  .halo {
+    animation-duration: 8s;
   }
 }
