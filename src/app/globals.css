@@ -4,7 +4,23 @@
   --background: #f2f2f3;
   --foreground: #343537;
   --accent: #00d4ff;
-  --blink: 3.6s;
+  --breath: 4.5s;
+
+  /* Cielo nocturno por defecto (lib/sky.ts lo ajusta según la hora) */
+  --sky-top: #161d2a;
+  --sky-mid: #222b3b;
+  --sky-low: #2c3546;
+  --cloud: #3b4659;
+  --haze: #2a3242;
+  --mount-far: #1f2734;
+  --mount-near: #151b25;
+  --lights: 1;
+  --stars: 1;
+  --moon: 1;
+  --sun: 0;
+  --glow: 1;
+  --sun-x: 300px;
+  --sun-y: 560px;
 }
 
 @theme inline {
@@ -40,59 +56,28 @@ body {
 
 /* ---------- Semáforo ---------- */
 
-@keyframes blink {
-  0%, 100% { opacity: 0.06; }
-  40%, 62% { opacity: 1; }
-}
-
-@keyframes halo {
-  0%, 100% { opacity: 0.1; transform: scale(0.9); }
-  40%, 62% { opacity: 1; transform: scale(1); }
-}
-
-.lamp {
-  animation: blink var(--blink) ease-in-out infinite;
-}
-
-.halo {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: halo var(--blink) ease-in-out infinite;
-}
-
-@keyframes dot {
-  0%, 100% { opacity: 0.25; }
+/* Respiración suave y continua de la luz roja */
+@keyframes breathe {
+  0%, 100% { opacity: 0.12; }
   50% { opacity: 1; }
 }
 
-.blink-dot {
-  box-shadow: 0 0 8px var(--accent);
-  animation: dot 1.8s ease-in-out infinite;
+@keyframes glow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
 }
 
-@keyframes sway {
-  0%, 100% { transform: rotate(-0.7deg); }
-  50% { transform: rotate(0.7deg); }
+.lamp {
+  animation: breathe var(--breath) ease-in-out infinite;
 }
 
-.sway {
-  transform-box: view-box;
-  transform-origin: 800px 104px;
-  animation: sway 7s ease-in-out infinite;
-}
-
-@keyframes drift {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-40px); }
-}
-
-.drift {
-  animation: drift 30s ease-in-out infinite;
+.glow {
+  animation: glow var(--breath) ease-in-out infinite;
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 0.25; }
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.2; }
 }
 
 .twinkle {
@@ -141,8 +126,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sway,
-  .drift,
   .twinkle,
   .reveal,
   .marquee,
@@ -150,7 +133,7 @@ body {
     animation: none;
   }
   .lamp,
-  .halo {
-    animation-duration: 8s;
+  .glow {
+    animation-duration: 9s;
   }
 }
