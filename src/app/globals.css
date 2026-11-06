@@ -5,6 +5,22 @@
   --foreground: #343537;
   --accent: #00d4ff;
   --breath: 4.5s;
+
+  /* Cielo nocturno por defecto (lib/sky.ts lo ajusta según la hora) */
+  --sky-top: #161d2a;
+  --sky-mid: #222b3b;
+  --sky-low: #2c3546;
+  --cloud: #3b4659;
+  --haze: #2a3242;
+  --mount-far: #1f2734;
+  --mount-near: #151b25;
+  --lights: 1;
+  --stars: 1;
+  --moon: 1;
+  --sun: 0;
+  --glow: 1;
+  --sun-x: 300px;
+  --sun-y: 560px;
 }
 
 @theme inline {
@@ -70,15 +86,6 @@ body {
   animation-iteration-count: infinite;
 }
 
-@keyframes window-blink {
-  0%, 45%, 100% { opacity: 0.8; }
-  50%, 95% { opacity: 0; }
-}
-
-.window-blink {
-  animation: window-blink 14s steps(1) infinite;
-}
-
 /* ---------- Entradas ---------- */
 
 @keyframes reveal {
@@ -120,7 +127,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .twinkle,
-  .window-blink,
   .reveal,
   .marquee,
   .nudge {

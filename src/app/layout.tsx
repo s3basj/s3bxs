@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Permanent_Marker, Silkscreen } from "next/font/google";
 import "./globals.css";
+import { skyInlineScript } from "./lib/sky";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -54,8 +55,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body className={`${inter.variable} ${marker.variable} ${pixel.variable} antialiased`}>
+        {/* Ajusta el cielo a la hora de Colombia antes del primer pintado */}
+        <script dangerouslySetInnerHTML={{ __html: skyInlineScript }} />
         {children}
       </body>
     </html>

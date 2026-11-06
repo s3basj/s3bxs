@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { ChevronDown, Github, Linkedin, Instagram, MapPin } from 'lucide-react';
 import NightScene from './components/NightScene';
 import Reveal from './components/Reveal';
+import SkyClock from './components/SkyClock';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/s3basj', label: 'GitHub' },
@@ -37,9 +38,12 @@ export default function ComingSoon() {
       <section className="flex h-svh min-h-[560px] flex-col px-4 pt-4 pb-4 md:px-8 md:pt-6 md:pb-6">
         <header className="reveal mx-auto mb-4 flex w-full max-w-7xl items-center justify-between rounded-full border border-[#343537]/10 bg-white/60 px-5 py-2.5 backdrop-blur md:mb-5">
           <span className="font-pixel text-sm tracking-wider">S3BXS</span>
-          <a href="#contacto" className="font-pixel text-[11px] text-[#343537]/70 transition-colors hover:text-[#00a9cc] md:text-xs">
-            Contacto
-          </a>
+          <div className="flex items-center gap-4 md:gap-6">
+            <SkyClock className="font-pixel hidden text-[11px] text-[#343537]/50 sm:inline md:text-xs" />
+            <a href="#contacto" className="font-pixel text-[11px] text-[#343537]/70 transition-colors hover:text-[#00a9cc] md:text-xs">
+              Contacto
+            </a>
+          </div>
         </header>
 
         <div className="reveal relative mx-auto w-full max-w-7xl flex-1 [animation-delay:120ms]">

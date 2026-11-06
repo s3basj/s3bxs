@@ -6,6 +6,7 @@ Esta carpeta está excluida de la compilación (`tsconfig.json`) y del linter.
 - `portada-original/`: la primera portada, con la foto (`public/img/one.png`) y fondo claro.
 - `portada-semaforo/`: la versión nocturna con el semáforo vectorial.
 - `portada-comic/`: la versión de tres pantallas con el semáforo estilo cómic/tinta.
+- `portada-plana/`: el semáforo en ilustración plana (solo cambian `page.tsx`, `globals.css` y `components/NightScene.tsx`).
 
 ## Cómo restaurar una
 
