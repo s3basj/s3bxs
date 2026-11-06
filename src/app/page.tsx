@@ -1,113 +1,73 @@
-'use client';
+import { Github, Linkedin, Instagram, MapPin } from 'lucide-react';
+import TrafficLight from './components/TrafficLight';
+import CityScape from './components/CityScape';
 
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Instagram, Mail, MapPin, Construction } from 'lucide-react';
-import Image from 'next/image';
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/s3basj', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/sebastian-jaramillo3/', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://instagram.com/s3basj', label: 'Instagram' },
+];
+
+const roles = ['Civil Engineer', 'UX/IX Designer', 'Full Stack Developer'];
 
 export default function ComingSoon() {
-  const socialLinks = [
-    {
-      icon: Github,
-      href: 'https://github.com/s3basj',
-      label: 'GitHub'
-    },
-    {
-      icon: Linkedin,
-      href: 'https://www.linkedin.com/in/sebastian-jaramillo3/',
-      label: 'LinkedIn'
-    },
-    {
-      icon: Instagram,
-      href: 'https://instagram.com/s3basj',
-      label: 'Instagram'
-    }
-  ];
-
   return (
-    <div className="h-screen bg-[#f2f2f3] flex flex-col items-center justify-between py-12 md:py-16 px-6 md:px-8 lg:px-12 relative overflow-hidden">
-      {/* Top section - Name and info */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="text-center space-y-8 z-10 w-full max-w-6xl mt-4"
-      >
-        {/* Name */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-[#343537] tracking-tighter italic leading-tight">
-          SEBASTIÁN JARAMILLO
+    <main className="scene relative flex min-h-svh flex-col items-center overflow-hidden px-4 text-[#eef0f6]">
+      <CityScape />
+
+      {/* Semáforo colgando del brazo */}
+      <div className="relative z-10 mt-[4svh] flex flex-col items-center">
+        <TrafficLight />
+      </div>
+
+      {/* Contenido */}
+      <section className="fade-up relative z-10 mt-5 flex w-full max-w-3xl flex-col items-center pb-8 text-center md:mt-6">
+        <p className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-[11px] font-semibold tracking-[0.3em] text-white/70 uppercase backdrop-blur-sm md:text-xs">
+          <span className="blink-dot h-2 w-2 rounded-full bg-[#ff3b2f]" aria-hidden />
+          Próximamente
+        </p>
+
+        <h1 className="text-[clamp(2.25rem,8vw,5.5rem)] leading-[0.95] font-black tracking-tight text-balance">
+          Sebastián Jaramillo
         </h1>
 
-        {/* Roles in one line */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-3 text-base md:text-lg lg:text-xl text-[#343537]/70 font-medium">
-          <span>Civil Engineer</span>
-          <span className="text-cyan-500">|</span>
-          <span>UX/IX Designer</span>
-          <span className="text-cyan-500">|</span>
-          <span>Full Stack Developer</span>
-        </div>
+        <ul className="mt-4 flex flex-col items-center justify-center gap-x-3 gap-y-1 sm:flex-row text-sm font-medium text-white/65 md:text-lg">
+          {roles.map((role, i) => (
+            <li key={role} className="flex items-center gap-3">
+              {i > 0 && <span className="hidden h-1 w-1 rounded-full bg-[#ff3b2f]/80 sm:block" aria-hidden />}
+              {role}
+            </li>
+          ))}
+        </ul>
 
-        {/* Under Construction Badge - wider container */}
-        <div className="inline-flex items-center gap-4 md:gap-5 bg-[#343537] text-[#f2f2f3] px-12 py-4 md:px-16 md:py-5 rounded-full shadow-lg">
-          <Construction className="w-5 h-5 md:w-6 md:h-6 text-cyan-400 animate-pulse" />
-          <span className="text-base md:text-xl font-bold tracking-wide">EN CONSTRUCCIÓN</span>
-          <Construction className="w-5 h-5 md:w-6 md:h-6 text-cyan-400 animate-pulse" />
-        </div>
+        <p className="mt-5 max-w-md text-sm text-white/50 md:text-base text-balance">
+          Mi portafolio está en construcción. Alto un momento: muy pronto le doy luz verde.
+        </p>
 
-        {/* Location */}
-        <div className="flex items-center justify-center gap-2 text-sm md:text-base text-[#343537]/70 pt-2">
-          <MapPin className="w-4 h-4 text-cyan-500" />
-          <span>San Juan de Pasto, Colombia</span>
-        </div>
+        <p className="mt-4 flex items-center gap-1.5 text-xs text-white/55 md:text-sm">
+          <MapPin className="h-4 w-4 text-[#ff5a47]" aria-hidden />
+          San Juan de Pasto, Colombia
+        </p>
 
-        {/* Social Links */}
-        <div className="flex justify-center gap-5 md:gap-7 pt-4">
-          {socialLinks.map((social, index) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
+        <nav aria-label="Redes sociales" className="mt-6 flex gap-3">
+          {socialLinks.map(({ icon: Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-              whileHover={{ y: -3, scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group flex flex-col items-center gap-1.5"
+              aria-label={label}
+              className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.05] text-white/80 backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-[#ff3b2f]/60 hover:bg-[#ff3b2f]/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff3b2f]"
             >
-              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#343537] flex items-center justify-center group-hover:bg-cyan-500 transition-all duration-300 shadow-md group-hover:shadow-lg">
-                <social.icon className="w-5 h-5 md:w-5.5 md:h-5.5 text-[#f2f2f3]" />
-              </div>
-              <span className="text-xs font-medium text-[#343537]/70 group-hover:text-[#343537] transition-colors">
-                {social.label}
-              </span>
-            </motion.a>
+              <Icon className="h-5 w-5" aria-hidden />
+            </a>
           ))}
-        </div>
+        </nav>
 
-        {/* Footer Message */}
-        <p className="text-[#343537]/50 text-xs md:text-sm pt-6">
-          Trabajando en algo increíble. Vuelve pronto.
+        <p className="mt-8 text-[11px] tracking-wider text-white/30">
+          © {new Date().getFullYear()} Sebastián Jaramillo
         </p>
-      </motion.div>
-
-      {/* Bottom section - Person image anchored to bottom - NO AURA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="relative w-full max-w-lg md:max-w-xl lg:max-w-2xl h-[52vh] flex-shrink-0 -mb-6 md:-mb-8 lg:-mb-12"
-      >
-        {/* Person image - clean, no glow effects */}
-        <div className="relative w-full h-full">
-          <Image
-            src="/img/one.png"
-            alt="Sebastián Jaramillo"
-            fill
-            className="object-contain object-bottom"
-            priority
-          />
-        </div>
-      </motion.div>
-    </div>
+      </section>
+    </main>
   );
 }
