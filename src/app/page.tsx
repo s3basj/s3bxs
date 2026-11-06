@@ -37,10 +37,9 @@ export default function ComingSoon() {
       <section className="flex h-svh min-h-[560px] flex-col px-4 pt-4 pb-4 md:px-8 md:pt-6 md:pb-6">
         <header className="reveal mx-auto mb-4 flex w-full max-w-7xl items-center justify-between rounded-full border border-[#343537]/10 bg-white/60 px-5 py-2.5 backdrop-blur md:mb-5">
           <span className="font-pixel text-sm tracking-wider">S3BXS</span>
-          <span className="font-pixel flex items-center gap-2 text-[11px] text-[#343537]/70 md:text-xs">
-            <span className="blink-dot h-2 w-2 rounded-full bg-[#00d4ff]" aria-hidden />
-            En construcción
-          </span>
+          <a href="#contacto" className="font-pixel text-[11px] text-[#343537]/70 transition-colors hover:text-[#00a9cc] md:text-xs">
+            Contacto
+          </a>
         </header>
 
         <div className="reveal relative mx-auto w-full max-w-7xl flex-1 [animation-delay:120ms]">
@@ -49,10 +48,10 @@ export default function ComingSoon() {
               <NightScene />
               <a
                 href="#alto"
-                className="font-pixel absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-col items-center text-[11px] text-white/70 transition hover:text-[#00d4ff]"
+                className="font-pixel absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full bg-[#11161f]/70 py-1.5 pr-2.5 pl-3.5 text-[11px] text-white/80 backdrop-blur-sm transition hover:text-[#00d4ff]"
               >
                 Desliza
-                <ChevronDown className="nudge h-5 w-5" aria-hidden />
+                <ChevronDown className="nudge h-4 w-4" aria-hidden />
               </a>
             </div>
           </div>
@@ -86,7 +85,7 @@ export default function ComingSoon() {
       </section>
 
       {/* ---------- Pantalla 3: contacto ---------- */}
-      <section className="relative flex min-h-svh items-end overflow-hidden px-6 pt-20 md:px-10">
+      <section id="contacto" className="relative flex min-h-svh items-end overflow-hidden px-6 pt-20 md:px-10">
         <div className="mx-auto grid w-full max-w-7xl items-end gap-6 md:grid-cols-[1.2fr_1fr]">
           <div className="self-center pb-6 text-center md:pb-24 md:text-left">
             <Reveal>
