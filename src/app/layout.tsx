@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Permanent_Marker, Silkscreen } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -7,9 +7,21 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+const marker = Permanent_Marker({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-permanent-marker",
+});
+
+const pixel = Silkscreen({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-silkscreen",
+});
+
 export const metadata: Metadata = {
-  title: "Sebastián Jaramillo | Full Stack Developer",
-  description: "Sebastián Jaramillo - Civil Engineer, UX/IX Designer & Full Stack Developer. Portafolio en construcción.",
+  title: "Sebastián Jaramillo | Desarrollador Full Stack",
+  description: "Sebastián Jaramillo - Ingeniero Civil, Diseñador UX/IX y Desarrollador Full Stack. Portafolio en construcción.",
   keywords: ["Sebastián Jaramillo", "Full Stack Developer", "UX Designer", "Web Developer", "Civil Engineer", "Colombia"],
   authors: [{ name: "Sebastián Jaramillo" }],
   creator: "Sebastián Jaramillo",
@@ -17,14 +29,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CO",
     url: "https://s3bxs.com",
-    title: "Sebastián Jaramillo | Full Stack Developer",
-    description: "Civil Engineer, UX/IX Designer & Full Stack Developer",
+    title: "Sebastián Jaramillo | Desarrollador Full Stack",
+    description: "Ingeniero Civil, Diseñador UX/IX y Desarrollador Full Stack",
     siteName: "Sebastián Jaramillo Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sebastián Jaramillo | Full Stack Developer",
-    description: "Civil Engineer, UX/IX Designer & Full Stack Developer",
+    title: "Sebastián Jaramillo | Desarrollador Full Stack",
+    description: "Ingeniero Civil, Diseñador UX/IX y Desarrollador Full Stack",
   },
   robots: {
     index: true,
@@ -33,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0f18",
+  themeColor: "#f2f2f3",
 };
 
 export default function RootLayout({
@@ -43,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${marker.variable} ${pixel.variable} antialiased`}>
         {children}
       </body>
     </html>

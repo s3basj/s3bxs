@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0f18;
-  --foreground: #eef0f6;
-  --signal: #ff3b2f;
+  --background: #f2f2f3;
+  --foreground: #343537;
+  --accent: #00d4ff;
   --blink: 3.6s;
+}
+
+@theme inline {
+  --font-pixel: var(--font-silkscreen);
+  --font-marker: var(--font-permanent-marker);
 }
 
 html {
@@ -25,66 +30,69 @@ body {
   }
 }
 
-/* ---------- Escena ---------- */
-
-.scene {
+/* Fondo claro con textura sutil de papel y luz cian */
+.paper {
   background:
-    radial-gradient(120% 70% at 50% 20%, #1d2638 0%, #121826 45%, #0b0f18 100%);
+    radial-gradient(60% 40% at 50% 0%, rgba(0, 212, 255, 0.10), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    var(--background);
 }
 
-/* Parpadeo lento y continuo de la luz roja */
+/* ---------- Semáforo ---------- */
+
 @keyframes blink {
-  0%, 100% { opacity: 0.08; }
+  0%, 100% { opacity: 0.06; }
   40%, 62% { opacity: 1; }
 }
 
 @keyframes halo {
-  0%, 100% { opacity: 0.12; transform: translate(-50%, -50%) scale(0.92); }
-  40%, 62% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
+  0%, 100% { opacity: 0.1; transform: scale(0.9); }
+  40%, 62% { opacity: 1; transform: scale(1); }
 }
 
-.lamp,
-.blink-dot {
+.lamp {
   animation: blink var(--blink) ease-in-out infinite;
 }
 
-.blink-dot {
-  box-shadow: 0 0 10px var(--signal);
-}
-
 .halo {
-  background: radial-gradient(circle, rgba(255, 70, 45, 0.55) 0%, rgba(255, 70, 45, 0.18) 30%, rgba(255, 70, 45, 0) 65%);
+  transform-box: fill-box;
+  transform-origin: center;
   animation: halo var(--blink) ease-in-out infinite;
 }
 
-/* Leve vaivén del semáforo colgado */
+@keyframes dot {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+.blink-dot {
+  box-shadow: 0 0 8px var(--accent);
+  animation: dot 1.8s ease-in-out infinite;
+}
+
 @keyframes sway {
-  0%, 100% { transform: rotate(-0.6deg); }
-  50% { transform: rotate(0.6deg); }
+  0%, 100% { transform: rotate(-0.7deg); }
+  50% { transform: rotate(0.7deg); }
 }
 
 .sway {
-  transform-origin: 47% 2%;
+  transform-box: view-box;
+  transform-origin: 800px 104px;
   animation: sway 7s ease-in-out infinite;
 }
 
 @keyframes drift {
   0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(6%); }
+  50% { transform: translateX(-40px); }
 }
 
-.fog {
-  animation: drift 26s ease-in-out infinite;
-}
-
-.fog-slow {
-  animation-duration: 38s;
-  animation-direction: reverse;
+.drift {
+  animation: drift 30s ease-in-out infinite;
 }
 
 @keyframes twinkle {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(0.55); }
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.25; }
 }
 
 .twinkle {
@@ -93,24 +101,43 @@ body {
   animation-iteration-count: infinite;
 }
 
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
+/* ---------- Entradas ---------- */
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: none; }
 }
 
-.fade-up {
-  animation: fade-up 1s 0.2s ease-out both;
+.reveal {
+  animation: reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes pop {
+  0% { opacity: 0; scale: 0.6; }
+  70% { opacity: 1; scale: 1.06; }
+  100% { opacity: 1; scale: 1; }
+}
+
+@keyframes bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -6px; }
+}
+
+.bubble > div {
+  animation:
+    pop 0.6s 0.9s cubic-bezier(0.3, 1.4, 0.5, 1) both,
+    bob 4s 1.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sway,
-  .fog,
+  .drift,
   .twinkle,
-  .fade-up {
+  .reveal,
+  .bubble > div {
     animation: none;
   }
   .lamp,
-  .blink-dot,
   .halo {
     animation-duration: 8s;
   }
