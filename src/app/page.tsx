@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ChevronDown, Github, Linkedin, Instagram, MapPin } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Instagram, MapPin, Wallet } from 'lucide-react';
 import NightScene from './components/NightScene';
 import Reveal from './components/Reveal';
 import SkyClock from './components/SkyClock';
@@ -40,6 +40,13 @@ export default function ComingSoon() {
           <span className="font-pixel text-sm tracking-wider">S3BXS</span>
           <div className="flex items-center gap-4 md:gap-6">
             <SkyClock className="font-pixel hidden text-[11px] text-[#343537]/50 sm:inline md:text-xs" />
+            <a
+              href="https://finance.s3bxs.com"
+              className="font-pixel group flex items-center gap-1.5 rounded-full border border-[#343537]/15 py-1 pr-2.5 pl-2 text-[11px] text-[#343537]/70 transition hover:border-[#00a9cc]/60 hover:text-[#00a9cc] focus-visible:ring-2 focus-visible:ring-[#00d4ff] focus-visible:outline-none md:text-xs"
+            >
+              <Wallet className="h-3.5 w-3.5 transition-transform group-hover:-rotate-6" aria-hidden />
+              Finanzas
+            </a>
             <a href="#contacto" className="font-pixel text-[11px] text-[#343537]/70 transition-colors hover:text-[#00a9cc] md:text-xs">
               Contacto
             </a>
