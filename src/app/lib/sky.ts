@@ -16,25 +16,25 @@ export function applySky(now?: Date) {
     'sky-top': '#161d2a', 'sky-mid': '#222b3b', 'sky-low': '#2c3546',
     'cloud': '#3b4659', 'haze': '#2a3242',
     'mount-far': '#1f2734', 'mount-near': '#151b25',
-    lights: 1, stars: 1, moon: 1, sun: 0, glow: 1,
+    lights: 1, stars: 1, moon: 1, sun: 0,
   };
   const dawn: Pal = {
     'sky-top': '#334166', 'sky-mid': '#8a7a96', 'sky-low': '#f1a98a',
     'cloud': '#c9a2a6', 'haze': '#f3b79a',
     'mount-far': '#5a5a74', 'mount-near': '#3c3d55',
-    lights: 0.55, stars: 0.15, moon: 0.2, sun: 1, glow: 0.6,
+    lights: 0.55, stars: 0.15, moon: 0.2, sun: 1,
   };
   const day: Pal = {
     'sky-top': '#5ea8db', 'sky-mid': '#93c6e8', 'sky-low': '#d6ecf6',
     'cloud': '#ffffff', 'haze': '#e9f4fa',
     'mount-far': '#86a2b8', 'mount-near': '#647f96',
-    lights: 0, stars: 0, moon: 0, sun: 1, glow: 0.35,
+    lights: 0, stars: 0, moon: 0, sun: 1,
   };
   const dusk: Pal = {
     'sky-top': '#2f3463', 'sky-mid': '#7b5a83', 'sky-low': '#f08a5d',
     'cloud': '#b9878f', 'haze': '#f09a72',
     'mount-far': '#4f4562', 'mount-near': '#342e48',
-    lights: 0.75, stars: 0.25, moon: 0.3, sun: 1, glow: 0.7,
+    lights: 0.75, stars: 0.25, moon: 0.3, sun: 1,
   };
   stops.push([0, night], [5, night], [6.2, dawn], [7.6, day], [16.6, day], [18, dusk], [19.3, night], [24, night]);
 

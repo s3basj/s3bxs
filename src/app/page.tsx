@@ -75,11 +75,6 @@ export default function ComingSoon() {
 
         <Reveal className="relative z-10 px-4">
           <div className="relative -rotate-[4deg]">
-            {/* Cola del globo apuntando al semáforo */}
-            <svg className="absolute -top-[86px] left-[58%] h-[92px] w-[70px]" viewBox="0 0 70 92" aria-hidden>
-              <path d="M8 90 L58 2 L44 90 Z" fill="#fff" stroke="#111" strokeWidth="4" strokeLinejoin="round" />
-              <path d="M5 90 L48 90" stroke="#fff" strokeWidth="8" />
-            </svg>
             <div className="max-w-[640px] rounded-[16px] border-[4px] border-[#111] bg-white px-7 py-8 text-center shadow-[10px_10px_0_#111] md:px-14 md:py-12">
               <p className="font-marker text-[clamp(3.5rem,13vw,7.5rem)] leading-none text-[#111]">
                 ¡Alto!
