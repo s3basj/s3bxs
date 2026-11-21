@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import { ChevronDown, Github, Linkedin, Instagram, MapPin, Wallet } from 'lucide-react';
-import NightScene from './components/NightScene';
+import { Github, Linkedin, Instagram, MapPin, Wallet } from 'lucide-react';
 import Reveal from './components/Reveal';
 import SkyClock from './components/SkyClock';
 
@@ -12,86 +11,24 @@ const socialLinks = [
 
 const roles = ['Ingeniero Civil', 'Diseñador UX/IX', 'Desarrollador Full Stack'];
 
-function Tape({ reverse = false, className = '' }: { reverse?: boolean; className?: string }) {
-  const items = Array.from({ length: 8 });
+export default function Home() {
   return (
-    <div className={`tape overflow-hidden border-y-[3px] border-[#111] py-2 ${className}`} aria-hidden>
-      <div className={`marquee flex w-max ${reverse ? 'marquee-reverse' : ''}`}>
-        {[0, 1].map((half) => (
-          <div key={half} className="flex shrink-0">
-            {items.map((_, i) => (
-              <span key={i} className="font-pixel flex items-center gap-4 px-4 text-sm whitespace-nowrap text-[#111] md:text-base">
-                En construcción <span className="text-lg">✦</span>
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default function ComingSoon() {
-  return (
-    <main className="paper overflow-x-clip text-[#343537]">
-      {/* ---------- Pantalla 1: escena ---------- */}
-      <section className="flex h-svh min-h-[560px] flex-col px-4 pt-4 pb-4 md:px-8 md:pt-6 md:pb-6">
-        <header className="reveal mx-auto mb-4 flex w-full max-w-7xl items-center justify-between rounded-full border border-[#343537]/10 bg-white/60 px-5 py-2.5 backdrop-blur md:mb-5">
-          <span className="font-pixel text-sm tracking-wider">S3BXS</span>
-          <div className="flex items-center gap-4 md:gap-6">
-            <SkyClock className="font-pixel hidden text-[11px] text-[#343537]/50 sm:inline md:text-xs" />
-            <a
-              href="https://finance.s3bxs.com"
-              className="font-pixel group flex items-center gap-1.5 rounded-full border border-[#343537]/15 py-1 pr-2.5 pl-2 text-[11px] text-[#343537]/70 transition hover:border-[#00a9cc]/60 hover:text-[#00a9cc] focus-visible:ring-2 focus-visible:ring-[#00d4ff] focus-visible:outline-none md:text-xs"
-            >
-              <Wallet className="h-3.5 w-3.5 transition-transform group-hover:-rotate-6" aria-hidden />
-              Finanzas
-            </a>
-            <a href="#contacto" className="font-pixel text-[11px] text-[#343537]/70 transition-colors hover:text-[#00a9cc] md:text-xs">
-              Contacto
-            </a>
-          </div>
-        </header>
-
-        <div className="reveal relative mx-auto w-full max-w-7xl flex-1 [animation-delay:120ms]">
-          <div className="h-full rounded-[26px] bg-[#343537] p-2 shadow-[0_30px_60px_-20px_rgba(52,53,55,0.55),0_10px_20px_-10px_rgba(52,53,55,0.4)] md:rounded-[34px] md:p-3">
-            <div className="relative h-full overflow-hidden rounded-[19px] ring-1 ring-white/10 md:rounded-[24px]">
-              <NightScene />
-              <a
-                href="#alto"
-                className="font-pixel absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full bg-[#11161f]/70 py-1.5 pr-2.5 pl-3.5 text-[11px] text-white/80 backdrop-blur-sm transition hover:text-[#00d4ff]"
-              >
-                Desliza
-                <ChevronDown className="nudge h-4 w-4" aria-hidden />
-              </a>
-            </div>
-          </div>
+    <main className="paper flex min-h-svh flex-col overflow-x-clip px-4 pt-4 text-[#343537] md:px-8 md:pt-6">
+      <header className="reveal relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border border-[#343537]/10 bg-white/60 px-5 py-2.5 backdrop-blur">
+        <span className="font-pixel text-sm tracking-wider">S3BXS</span>
+        <div className="flex items-center gap-4 md:gap-6">
+          <SkyClock className="font-pixel hidden text-[11px] text-[#343537]/50 sm:inline md:text-xs" />
+          <a
+            href="https://finance.s3bxs.com"
+            className="font-pixel group flex items-center gap-1.5 rounded-full border border-[#343537]/15 py-1 pr-2.5 pl-2 text-[11px] text-[#343537]/70 transition hover:border-[#00a9cc]/60 hover:text-[#00a9cc] focus-visible:ring-2 focus-visible:ring-[#00d4ff] focus-visible:outline-none md:text-xs"
+          >
+            <Wallet className="h-3.5 w-3.5 transition-transform group-hover:-rotate-6" aria-hidden />
+            Finanzas
+          </a>
         </div>
-      </section>
+      </header>
 
-      {/* ---------- Pantalla 2: ¡Alto! ---------- */}
-      <section id="alto" className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden py-24">
-        <Tape className="absolute top-[12%] left-[-5%] w-[110%] -rotate-3" />
-
-        <Reveal className="relative z-10 px-4">
-          <div className="relative -rotate-[4deg]">
-            <div className="max-w-[640px] rounded-[16px] border-[4px] border-[#111] bg-white px-7 py-8 text-center shadow-[10px_10px_0_#111] md:px-14 md:py-12">
-              <p className="font-marker text-[clamp(3.5rem,13vw,7.5rem)] leading-none text-[#111]">
-                ¡Alto!
-              </p>
-              <p className="font-marker mt-3 text-[clamp(1.35rem,4.2vw,2.4rem)] leading-tight text-[#111]">
-                Estoy construyendo algo nuevo
-              </p>
-              <p className="font-marker mt-4 text-lg text-[#00a9cc] md:text-2xl">vuelve pronto :)</p>
-            </div>
-          </div>
-        </Reveal>
-
-        <Tape reverse className="absolute bottom-[12%] left-[-5%] w-[110%] rotate-2" />
-      </section>
-
-      {/* ---------- Pantalla 3: contacto ---------- */}
-      <section id="contacto" className="relative flex min-h-svh items-end overflow-hidden px-6 pt-20 md:px-10">
+      <section className="relative flex flex-1 items-end overflow-hidden px-2 pt-10 md:px-2">
         <div className="mx-auto grid w-full max-w-7xl items-end gap-6 md:grid-cols-[1.2fr_1fr]">
           <div className="self-center pb-6 text-center md:pb-24 md:text-left">
             <Reveal>

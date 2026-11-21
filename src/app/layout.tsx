@@ -1,17 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Permanent_Marker, Silkscreen } from "next/font/google";
+import { Inter, Silkscreen } from "next/font/google";
 import "./globals.css";
-import { skyInlineScript } from "./lib/sky";
 
 const inter = Inter({ 
   subsets: ["latin"],
   variable: '--font-inter',
-});
-
-const marker = Permanent_Marker({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-permanent-marker",
 });
 
 const pixel = Silkscreen({
@@ -56,9 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${inter.variable} ${marker.variable} ${pixel.variable} antialiased`}>
-        {/* Ajusta el cielo a la hora de Colombia antes del primer pintado */}
-        <script dangerouslySetInnerHTML={{ __html: skyInlineScript }} />
+      <body className={`${inter.variable} ${pixel.variable} antialiased`}>
         {children}
       </body>
     </html>

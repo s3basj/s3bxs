@@ -4,26 +4,10 @@
   --background: #f2f2f3;
   --foreground: #343537;
   --accent: #00d4ff;
-
-  /* Cielo nocturno por defecto (lib/sky.ts lo ajusta según la hora) */
-  --sky-top: #161d2a;
-  --sky-mid: #222b3b;
-  --sky-low: #2c3546;
-  --cloud: #3b4659;
-  --haze: #2a3242;
-  --mount-far: #1f2734;
-  --mount-near: #151b25;
-  --lights: 1;
-  --stars: 1;
-  --moon: 1;
-  --sun: 0;
-  --sun-x: 300px;
-  --sun-y: 560px;
 }
 
 @theme inline {
   --font-pixel: var(--font-silkscreen);
-  --font-marker: var(--font-permanent-marker);
 }
 
 html {
@@ -52,17 +36,6 @@ body {
     var(--background);
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.85; }
-  50% { opacity: 0.2; }
-}
-
-.twinkle {
-  animation-name: twinkle;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
 /* ---------- Entradas ---------- */
 
 @keyframes reveal {
@@ -74,39 +47,8 @@ body {
   animation: reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-/* Cinta de "en construcción" */
-.tape {
-  background: var(--accent);
-  box-shadow: 0 8px 0 rgba(17, 17, 17, 0.12);
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.marquee {
-  animation: marquee 28s linear infinite;
-}
-
-.marquee-reverse {
-  animation-direction: reverse;
-}
-
-@keyframes nudge {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
-}
-
-.nudge {
-  animation: nudge 1.6s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .twinkle,
-  .reveal,
-  .marquee,
-  .nudge {
+  .reveal {
     animation: none;
   }
 }

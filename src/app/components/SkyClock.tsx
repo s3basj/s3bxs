@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { applySky } from '../lib/sky';
 
-/** Mantiene el cielo sincronizado con la hora de Colombia y muestra la hora. */
+/** Hora actual de Colombia, al día cada 30 segundos. */
 export default function SkyClock({ className }: { className?: string }) {
   const [time, setTime] = useState<string | null>(null);
 
@@ -14,11 +13,7 @@ export default function SkyClock({ className }: { className?: string }) {
       hour12: false,
       timeZone: 'America/Bogota',
     });
-    const tick = () => {
-      const now = new Date();
-      applySky(now);
-      setTime(fmt.format(now));
-    };
+    const tick = () => setTime(fmt.format(new Date()));
     tick();
     const id = setInterval(tick, 30_000);
     return () => clearInterval(id);
